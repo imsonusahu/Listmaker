@@ -21,5 +21,8 @@
   "description": "This is a listmaker app",
   "main": "index.js",
   "author": "Sonu Sahu",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv": "^16.0.3"
+  }
 }

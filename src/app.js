@@ -1,9 +1,13 @@
 const express = require('express')
-const app = express();
 const port = process.env.PORT || 3000
 
 require("./db/conn");
 const mongoose = require("mongoose");
+const dotenv = require('dotenv');
+const app = express();
+dotenv.config();
+
+mongoose.set('strictQuery', false);
 
 const Student = require("./model/students");
 const animationList = require("./model/lotieAnim");
@@ -47,7 +51,7 @@ app.post("/allUsers", async (req, res) => {
         const data = await newUser.save();
         let response = {
             "code": 200,
-            "msg":"Sign up successful",
+            "msg": "Sign up successful",
             data
         }
 
@@ -81,13 +85,13 @@ app.post("/allUsers", async (req, res) => {
             let errMsg = {
                 code: 200,
                 msg: "Email already exist",
-                    data
+                data
             }
 
 
             console.log(errMsg)
 
-            res.body=errMsg;
+            res.body = errMsg;
 
             res.status(200).send(res.body);
         } else {
@@ -182,11 +186,10 @@ app.get("/plumberItems", async (req, res) => {
         console.log(plumberApi);
         res.status(201).send(
             {
-                success:true,
-                data:plumberApi
+                success: true,
+                data: plumberApi
 
             }
-
         );
     } catch (error) {
         res.status(400).send(json({error}));
@@ -215,11 +218,11 @@ app.post("/addServices", async (req, res) => {
 
     } catch (error) {
 
-        console.log("Error addServices >> ",error);
+        console.log("Error addServices >> ", error);
 
         res.status(400).send({
-            status:false,
-            message:error.message
+            status: false,
+            message: error.message
 
         });
 
@@ -241,20 +244,16 @@ app.post("/addBanner", async (req, res) => {
     }
 });
 
-app.post("/getService", async (req, res) => {
+app.get("/getServices", async (req, res) => {
 
     try {
         console.log(req.body.city_name);
-
-        let cityName = req.body.city_name;
-
-        const service = await OurServices.find({city_name: cityName});
-
+        const service = await AddServices.find();
 
         console.log(service);
         res.status(201).send(service);
     } catch (error) {
-        res.status(400).send(json({error}));
+        res.status(400).send(json(error));
         console.log(error.message);
     }
 

@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "express": "^4.17.3",
+    "firebase": "^9.6.7",
+    "http": "^0.0.1-security",
+    "joi": "^17.6.0",
+    "mongodb": "^4.3.1",
+    "mongoose": "^6.2.2",
+    "nodemon": "^2.0.15",
+    "peer": "^0.6.1",
+    "validator": "^13.7.0",
+    "webrtc": "^1.14.1"
+  },
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "name": "Listmaker",
+  "version": "1.0.0",
+  "description": "This is a listmaker app",
+  "main": "index.js",
+  "author": "Sonu Sahu",
+  "license": "ISC"
+}

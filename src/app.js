@@ -164,7 +164,11 @@ app.post("/plumberItems", async (req, res) => {
     try {
         const plumberApi = new PlumberApi(req.body);
         const addPlumberItems = await plumberApi.save();
-        res.status(201).send(addPlumberItems);
+        res.status(200).send({
+            success: true,
+            data: addPlumberItems
+
+        });
         console.log(addPlumberItems);
 
     } catch (error) {
@@ -184,7 +188,7 @@ app.get("/plumberItems", async (req, res) => {
     try {
         const plumberApi = await PlumberApi.find();
         console.log(plumberApi);
-        res.status(201).send(
+        res.status(200).send(
             {
                 success: true,
                 data: plumberApi

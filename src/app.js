@@ -251,7 +251,11 @@ app.get("/getServices", async (req, res) => {
         const service = await AddServices.find();
 
         console.log(service);
-        res.status(200).send(service);
+        res.status(200).send({
+                success: true,
+                data: service
+            }
+        );
     } catch (error) {
         res.status(400).send(json(error));
         console.log(error.message);

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
 
-const loginSchema = new mongoose.Schema({
+const bannerSchema = new mongoose.Schema({
 
 
     url: {
@@ -13,5 +13,5 @@ const loginSchema = new mongoose.Schema({
 
 
 //Now creating new collection
-const loginUser = new mongoose.model('banners', loginSchema)
-module.exports = loginUser;
+const BannerModel = new mongoose.model('banners', bannerSchema)
+module.exports = BannerModel;

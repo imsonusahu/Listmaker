@@ -7,8 +7,10 @@ const plumberItems = new mongoose.Schema({
     subtitle: {
         type: String
     },
-    type: Number
-},{ versionKey: false });
+    type: {
+        type: String
+    }
+}, {skipVersioning: true});
 
 const PlumberApi = new mongoose.model('plumberItems', plumberItems);
 

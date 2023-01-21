@@ -15,6 +15,7 @@ const allUsers = require("./model/loginApi");
 const router = require("./routes/routes");
 const AddServices = require("./model/AddServices");
 const PlumberApi = require("./model/PlumberApi");
+const BannerModel = require("./model/BannerModel");
 
 
 app.use(express.json());
@@ -235,9 +236,9 @@ app.post("/addServices", async (req, res) => {
 app.post("/addBanner", async (req, res) => {
 
     try {
-        const addBanner = new AddBanner(req.body);
+        const addBanner = new BannerModel(req.body);
         const sendBanner = await addBanner.save();
-        res.status(201).send(sendBanner);
+        res.status(200).send(sendBanner);
         console.log(sendBanner);
 
     } catch (error) {
@@ -269,10 +270,10 @@ app.get("/getBanner", async (req, res) => {
 
     try {
 
-        const banner = await AddBanner.find();
+        const banner = await BannerModel.find();
         console.log(banner);
 
-        res.status(200).send(banner);
+        res.status(200).send({status:"true",data:banner});
     } catch (error) {
         res.status(400).send(json({error}));
         console.log(error.message);

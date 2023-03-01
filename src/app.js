@@ -264,16 +264,14 @@ app.post("/recentInvoice", async (req, res) => {
 });
 
 
-
-
 //Admin
 app.post("/fileupload", async (req, res) => {
 
     try {
         const imagekit = new ImageKit({
-            publicKey : "public_a1+qXeZpzvlK2hrA/VOuE9sHv4M=",
-            privateKey : "private_gz3/vqyS61PfOpg4/rpJhfD1PQQ=",
-            urlEndpoint : "https://ik.imagekit.io/imsonusahu/"
+            publicKey: "public_a1+qXeZpzvlK2hrA/VOuE9sHv4M=",
+            privateKey: "private_gz3/vqyS61PfOpg4/rpJhfD1PQQ=",
+            urlEndpoint: "https://ik.imagekit.io/imsonusahu/"
         });
 
 
@@ -311,7 +309,7 @@ app.get("/getBanner", async (req, res) => {
         const banner = await BannerModel.find();
         console.log(banner);
 
-        res.status(200).send({status:"true",data:banner});
+        res.status(200).send({status: "true", data: banner});
     } catch (error) {
         res.status(400).send(json({error}));
         console.log(error.message);

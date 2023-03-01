@@ -1,10 +1,11 @@
 const express = require('express')
 const port = process.env.PORT || 3000
-
 require("./db/conn");
 const mongoose = require("mongoose");
 const dotenv = require('dotenv');
-const app = express();
+
+var ImageKit = require("imagekit")
+;const app = express();
 dotenv.config();
 
 mongoose.set('strictQuery', false);
@@ -16,6 +17,7 @@ const router = require("./routes/routes");
 const AddServices = require("./model/AddServices");
 const PlumberApi = require("./model/PlumberApi");
 const BannerModel = require("./model/BannerModel");
+const RecentInvoice = require("./model/RecentInvoice");
 
 
 app.use(express.json());
@@ -240,6 +242,42 @@ app.post("/addBanner", async (req, res) => {
         const sendBanner = await addBanner.save();
         res.status(200).send(sendBanner);
         console.log(sendBanner);
+
+    } catch (error) {
+
+        res.status(400).send({error});
+    }
+});
+
+app.post("/recentInvoice", async (req, res) => {
+
+    try {
+        const recentInvoice = new RecentInvoice(req.body);
+        const responseInvoice = await recentInvoice.save();
+        res.status(200).send(responseInvoice);
+        console.log(responseInvoice);
+
+    } catch (error) {
+
+        res.status(400).send({error});
+    }
+});
+
+
+
+
+//Admin
+app.post("/fileupload", async (req, res) => {
+
+    try {
+        const imagekit = new ImageKit({
+            publicKey : "public_a1+qXeZpzvlK2hrA/VOuE9sHv4M=",
+            privateKey : "private_gz3/vqyS61PfOpg4/rpJhfD1PQQ=",
+            urlEndpoint : "https://ik.imagekit.io/imsonusahu/"
+        });
+
+
+        console.log(imagekit)
 
     } catch (error) {
 
